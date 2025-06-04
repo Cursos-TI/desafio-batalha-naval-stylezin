@@ -36,5 +36,56 @@ int main() {
     // 1 1 1 1 1
     // 0 0 1 0 0
 
+    
+    // matriz do tabuleiro
+    int tabuleiro[10][10] = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
+    };
+
+    // declaração dos navios 
+    int navio1[3] = {3, 3, 3};
+    int navio2[3] = {3, 3, 3};
+
+
+    /* 
+    Alocando o primeiro navio na linha 6 coluna 4, com a adicioção do 5 + i, vai adicionar a cada repetição
+    +1, na primeira é 5 + 0, resultando em 5, na segunda é 5+1 resulta em 6, ou seja, o valor do [5][3] será 3
+    e assim vai sendo alocado para os [6][3] e [7][3] também.
+    */
+    for(int i = 0; i <3; i++)
+    {
+    tabuleiro[5 + i][3] = navio1[i];
+    }
+
+
+    /*
+    Esse código é similar ao do primeiro navio, porém em vez de inclir i++ na linha, será incluso na coluna
+    [5][6], [5][7], [5][8]. Nesses lugares do tabuleiro será definido de 0 para 3, representando os navios.
+    */
+    for(int i = 0; i <3; i++)
+    {
+    tabuleiro[5][6 + i] = navio2[i];
+    }
+
+
+    // looping para representar o tabuleiro
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
     return 0;
 }
