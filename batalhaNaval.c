@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+// definida linhas e as colunas, para não serem alterados os valores.
+#define linhas 10 
+#define colunas 10
+#define navio 3;
+
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
@@ -38,7 +43,7 @@ int main() {
 
     
     // matriz do tabuleiro
-    int tabuleiro[10][10] = {
+    int tabuleiro[linhas][colunas] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
@@ -51,41 +56,75 @@ int main() {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
     };
 
-    // declaração dos navios 
-    int navio1[3] = {3, 3, 3};
-    int navio2[3] = {3, 3, 3};
 
-
-    /* 
-    Alocando o primeiro navio na linha 6 coluna 4, com a adicioção do 5 + i, vai adicionar a cada repetição
+    /* Alocando o primeiro navio na linha 6 coluna 4, com a adicioção do 5 + i, vai adicionar a cada repetição
     +1, na primeira é 5 + 0, resultando em 5, na segunda é 5+1 resulta em 6, ou seja, o valor do [5][3] será 3
-    e assim vai sendo alocado para os [6][3] e [7][3] também.
-    */
-    for(int i = 0; i <3; i++)
+    e assim vai sendo alocado para os [6][3] e [7][3] também. */
+    for(int i = 0; i < 3; i++)
     {
-    tabuleiro[5 + i][3] = navio1[i];
+        if (tabuleiro[5 + i][3] == 3)
+        {
+            printf("#ERRO, HÁ UM NAVIO NESTA COORDENADA#\n");
+            break;
+        } else 
+        {
+            tabuleiro[5 + i][3] = navio;
+        }
     }
 
 
-    /*
-    Esse código é similar ao do primeiro navio, porém em vez de inclir i++ na linha, será incluso na coluna
-    [5][6], [5][7], [5][8]. Nesses lugares do tabuleiro será definido de 0 para 3, representando os navios.
-    */
-    for(int i = 0; i <3; i++)
+    /* Esse código é similar ao do primeiro navio, porém em vez de inclir i++ na linha, será incluso na coluna
+    [5][6], [5][7], [5][8]. Nesses lugares do tabuleiro será definido de 0 para 3, representando os navios. */
+    for(int i = 0; i < 3; i++)
     {
-    tabuleiro[5][6 + i] = navio2[i];
+        if (tabuleiro[5][6 + i] == 3)
+        {
+            printf("#ERRO, HÁ UM NAVIO NESTA COORDENADA#\n");
+            break;
+        } else 
+        {
+            tabuleiro[5][6 + i] = navio;
+        }
     }
 
+
+    /* Código para adicionar o terceiro navio ao tabuleiro, esse navio está na diagonal*/
+    for (int i = 0; i < 3; i++)
+    {
+        if (tabuleiro[i][i] == 3)
+        {
+            printf("#ERRO, HÁ UM NAVIO NESTA COORDENADA#\n");
+            break;
+        } else
+        {
+            tabuleiro[i][i] = navio;
+        }
+    }
+    
+
+    /* Código para adicionar o quarto navio que também está na posicionado na diagonal, porém na diagonal oposta*/
+    for (int i = 0; i < 3; i++)
+    {
+        if (tabuleiro[9 - i][8 - i] == 3)
+        {
+            printf("#ERRO, HÁ UM NAVIO NESTA COORDENADA#\n");
+            break;
+        } else 
+        {
+        tabuleiro[9 - i][8 - i] = navio;
+        }
+    }
+    
 
     // looping para representar o tabuleiro
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < linhas; i++)
     {
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < colunas; j++)
         {
             printf("%d ", tabuleiro[i][j]);
         }
         printf("\n");
     }
-
+    
     return 0;
 }
