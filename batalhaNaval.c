@@ -55,7 +55,28 @@ int main() {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
     };
-
+    //definindo as habilidades
+    int cone[5][5] = {
+        {0, 0, 0, 0, 0},
+        {0, 0, 5, 0, 0},
+        {0, 5, 5, 5, 0},
+        {5, 5, 5, 5, 5},
+        {0, 0, 0, 0, 0},
+    };
+    int cruz[5][5] = {
+        {0, 0, 5, 0, 0},
+        {0, 0, 5, 0, 0},
+        {5, 5, 5, 5, 5},
+        {0, 0, 5, 0, 0},
+        {0, 0, 5, 0, 0},
+    };
+    int octaedro[5][5] = {
+        {0, 0, 5, 0, 0},
+        {0, 5, 5, 5, 0},
+        {5, 5, 5, 5, 5},
+        {0, 5, 5, 5, 0},
+        {0, 0, 5, 0, 0},
+    };
 
     /* Alocando o primeiro navio na linha 6 coluna 4, com a adicioção do 5 + i, vai adicionar a cada repetição
     +1, na primeira é 5 + 0, resultando em 5, na segunda é 5+1 resulta em 6, ou seja, o valor do [5][3] será 3
@@ -113,6 +134,65 @@ int main() {
         {
         tabuleiro[9 - i][8 - i] = navio;
         }
+    }
+    
+    // Integrando as habilidades no tabuleiro
+
+    // habilidade da cruz
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            if (tabuleiro[5 + i][j] > tabuleiro[linhas][colunas]) break;
+
+            if (tabuleiro[5 + i][j] == 3)
+            {
+                if (cruz[i][j] == 5 && tabuleiro[5 + i][j] == 3)
+                {
+                    tabuleiro[5 + i][j] = 9; // Se aparecer 9 no tabuleiro, significa que o navio foi atingido pela habilidade
+                }
+            } else {
+                tabuleiro[5 + i][j] = cruz[i][j];
+            }
+        }  
+    }
+
+    //habilidade do cone
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            if (tabuleiro[i][j] > tabuleiro[linhas][colunas]) break;
+            
+            if (tabuleiro[i][j] == 3)
+            {
+                if (cone[i][j] == 5 && tabuleiro[i][j] == 3)
+                {
+                    tabuleiro[i][j] = 9; // Se aparecer 9 no tabuleiro, significa que o navio foi atingido pela habilidade
+                }
+            } else {
+                tabuleiro[i][j] = cone[i][j];
+            }
+        }  
+    }
+
+    //habilidade do octaedro
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            if (tabuleiro[1 + i][5 + j] > tabuleiro[linhas][colunas]) break;
+            
+            if (tabuleiro[1 + i][5 + j] == 3)
+            {
+                if (octaedro[i][j] == 5 && tabuleiro[1 + i][5 + j] == 3)
+                {
+                    tabuleiro[1 + i][5 + j] = 9; // Se aparecer 9 no tabuleiro, significa que o navio foi atingido pela habilidade
+                }
+            } else {
+                tabuleiro[1 + i][5 + j] = octaedro[i][j];
+            }
+        }  
     }
     
 
